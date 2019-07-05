@@ -71,7 +71,7 @@ export default {
   .iconSize{
     font-size: 1.5em;
   }
-  .img-upload-list{
+    .img-upload-list{
       display: inline-block;
       width: 60px;
       min-height: 60px;

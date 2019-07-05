@@ -19,13 +19,17 @@ class HttpRequest {
     this.baseUrl = baseUrl
     this.queue = {}
   }
-  getInsideConfig () {
-    const config = {
+  getInsideConfig (url) {
+    let config = {
       baseURL: this.baseUrl,
       headers: {
-        //
+        
       }
     }
+    // if(url == '/api/index/upload'){
+    //   config.headers = {'Content-Type': 'application/json; charset=utf-8'}
+    // }
+    // console.log(config)
     return config
   }
   destroy (url) {
@@ -68,7 +72,7 @@ class HttpRequest {
   }
   request (options) {
     const instance = axios.create()
-    options = Object.assign(this.getInsideConfig(), options)
+    options = Object.assign(this.getInsideConfig(options.url), options)
     this.interceptors(instance, options.url)
     return instance(options)
   }

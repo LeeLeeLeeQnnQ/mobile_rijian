@@ -40,10 +40,6 @@ export default {
     sethasGetInfo (state, isGetInfo) {
       state.hasGetInfo = isGetInfo
     },
-    // setExpendParams (state, expend_params) {
-    //   state.expend_params = '';
-    //   state.expend_params = expend_params ;
-    // },
   },
   getters: {
     

@@ -31,7 +31,7 @@ export default {
       let option = {
         title: {
           text: this.text,
-          subtext: this.subtext,
+          // subtext: this.subtext,
           x: 'center'
         },
         xAxis: {
@@ -41,10 +41,19 @@ export default {
         yAxis: {
           type: 'value'
         },
-        series: [{
-          data: seriesData,
-          type: 'bar'
-        }]
+        series: [
+          {
+            data: seriesData,
+            type: 'line',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            // areaStyle: {normal: {}},
+          }
+        ]
       }
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
       this.dom.setOption(option)
@@ -53,6 +62,42 @@ export default {
   },
   beforeDestroy () {
     off(window, 'resize', this.resize)
+  },
+  watch: {
+    value (newName, oldName) {
+      let xAxisData = Object.keys(newName)
+      let seriesData = Object.values(newName)
+      let option = {
+        title: {
+          text: this.text,
+          // subtext: this.subtext,
+          x: 'center'
+        },
+        xAxis: {
+          type: 'category',
+          data: xAxisData
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: seriesData,
+            type: 'line',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            // areaStyle: {normal: {}},
+          }
+        ]
+      }
+      this.dom = echarts.init(this.$refs.dom, 'tdTheme')
+      this.dom.setOption(option)
+      on(window, 'resize', this.resize)
+    }
   }
 }
 </script>

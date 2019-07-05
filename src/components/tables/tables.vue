@@ -77,7 +77,7 @@ export default {
     },
     stripe: {
       type: Boolean,
-      default: false
+      default: true
     },
     border: {
       type: Boolean,

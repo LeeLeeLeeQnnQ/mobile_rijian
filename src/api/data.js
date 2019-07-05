@@ -47,3 +47,14 @@ export const submitWorkInfo = (data) => {
     method: 'POST'
   })
 }
+
+
+
+// api/work/edit
+export const uploadImg = (data) => {
+  return axios.request({
+    url: '/api/index/upload',
+    data,
+    method: 'POST',
+  })
+}

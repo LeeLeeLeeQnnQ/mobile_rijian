@@ -50,16 +50,32 @@ export default {
             name: this.dname,
             type: 'pie',
             radius: '55%',
-            center: ['50%', '60%'],
+            center: ['55%', '55%'],
             data: this.value,
-            itemStyle: {
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
+            label: {
+                normal: {
+                    formatter: '{b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#eee',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    rich: {
+                        b: {
+                            fontSize: 12,
+                            lineHeight: 24,
+                            padding: [0, 4],
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
           }
+
         ]
       }
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
@@ -74,6 +90,7 @@ export default {
     value (newName, oldName) {
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
       this.dom.clear()
+      this.legend = newName.map(_ => _.name)
       let option = {
         title: {
           text: this.text,
@@ -94,15 +111,30 @@ export default {
             name: this.dname,
             type: 'pie',
             radius: '55%',
-            center: ['50%', '60%'],
+            center: ['55%', '55%'],
             data: newName,
-            itemStyle: {
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
+            label: {
+                normal: {
+                    formatter: '{b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#eee',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    rich: {
+                        b: {
+                            fontSize: 12,
+                            lineHeight: 24,
+                            padding: [0, 4],
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
           }
         ]
       }

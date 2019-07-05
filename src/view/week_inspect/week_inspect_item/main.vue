@@ -170,7 +170,6 @@ export default {
     align-items: center;
     justify-content: space-between;
     font-size: 0.8rem;
-    height: 2rem;
     padding: 0.3rem;
     margin: 0.1rem;
   }
