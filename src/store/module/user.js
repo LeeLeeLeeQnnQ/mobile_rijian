@@ -3,7 +3,7 @@ import {
   logout,
   getUserInfo
 } from '@/api/user'
-import { setToken, getToken, setUsername, setSessionAccess } from '@/libs/util'
+import { setToken, getToken, setUsername, setSessionAccess , setBrand, setCity } from '@/libs/util'
 
 export default {
   state: {
@@ -40,6 +40,12 @@ export default {
     sethasGetInfo (state, isGetInfo) {
       state.hasGetInfo = isGetInfo
     },
+    setCity(state, city){
+      setCity(city)
+    },
+    setBrand(state, brand){
+      setBrand(brand)
+    },
   },
   getters: {
     
@@ -60,6 +66,8 @@ export default {
             const info = data.info
             // 存储用户token
             commit('setToken', data.token)
+            commit('setCity', info.city_id[0])
+            commit('setBrand', info.brand_id[0])
             // 存储用户厨房ID
             commit('setKitchenId', info.kitchen_id)
             // 存储信息成功开关
@@ -88,6 +96,8 @@ export default {
                 commit('setUsername', '')
                 commit('setToken', '')
                 commit('setAccess', [])
+                commit('setCity', '')
+                commit('setBrand', '')
                 commit('sethasGetInfo', false)
                 resolve(data)
                 return
@@ -97,6 +107,8 @@ export default {
                 arr.push(element.id*1)
               })
               commit('setAccess', arr)
+              commit('setCity', data.city_id[0])
+              commit('setBrand', data.brand_id[0])
               commit('sethasGetInfo', true)
               resolve(dbody)
             }).catch(err => {
@@ -114,6 +126,8 @@ export default {
         logout(state.token).then(() => {
           commit('setUsername', '')
           commit('setToken', '')
+          commit('setCity', '')
+          commit('setBrand', '')
           commit('setAccess', [])
           commit('sethasGetInfo', false)
           resolve()

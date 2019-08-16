@@ -5,6 +5,8 @@ import { forEach, hasOneOf, objEqual } from '@/libs/tools'
 const { title, cookieExpires, useI18n } = config
 
 export const TOKEN_KEY = 'token'
+export const CITY_KEY = 'city'
+export const BRAND_KEY = 'brand'
 
 export const setToken = (token) => {
   window.sessionStorage.setItem('gdjumaotoken', token)
@@ -12,6 +14,16 @@ export const setToken = (token) => {
 }
 export const setUsername = (username) => {
   window.sessionStorage.setItem('gdjumaousername', username)
+}
+
+export const setCity = (city) => {
+  window.localStorage.setItem('gdjumaocity', city)
+  Cookies.set(CITY_KEY, city, {expires: cookieExpires || 1})
+}
+
+export const setBrand = (brand) => {
+  Cookies.set(BRAND_KEY, brand, {expires: cookieExpires || 1})
+  window.localStorage.setItem('gdjumaobrand', brand)
 }
 
 export const getToken = () => {

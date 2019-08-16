@@ -36,7 +36,7 @@ export default {
     handleItem (item) {
       this.$store.commit("setStoreInfo",{store_name:item.store_name,store_no:item.store_no})
       let obj = {}
-      obj.store_id = item.id;
+      obj.store_id = item.store_id;
       obj.ptype = item.ptype;
       obj.kitchen_id = this.curentKitchen;
       obj.start_date = this.beforeWeek;
@@ -58,7 +58,7 @@ export default {
           this.$Message.warning('请求异常！')
           return
         }
-        const zone = { id : 0 , ptype : '3' + this.curentKitchen + '2',  store_name :'厨房公共区域'}
+        const zone = { store_id : 0 , ptype : '3' + this.curentKitchen + '2',  store_name :'厨房公共区域'}
         const dbody = data.data || [];
         dbody.forEach( (element, index) => {
           element.ptype = '3' +'' + element.kitchen_id +'' + '1';
